@@ -1,4 +1,5 @@
 const express = require('express');
+const apiCredentials = require('./middlewares/apiCredentials');
 
 const app = express();
 
@@ -9,8 +10,9 @@ const teams = [
 ];
 
 app.use(express.json());
+app.use(apiCredentials);
 
-app.get('/teams', (req, res) => res.json(teams));
+app.get('/teams', (_req, res) => res.json(teams));
 
 app.get('/teams/:id', (req, res) => {
   const id = Number(req.params.id);
